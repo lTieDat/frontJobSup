@@ -46,6 +46,17 @@
         .search-form input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .search-form button {
+            background-color: #f4f4f4;
+            color: #333;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +68,12 @@
             <label for="phoneNumber">Phone Number:</label>
             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number" required>
     
-            <input type="submit" value="Create contract">
+            <input type="submit" value="Create contract" >
         </form>
+    <button onclick="window.location.href = 'listContract.html';" >Back to List Contracts</button>
+
     </div>
-<script src="../handler/searchClient.js"></script>
+    <!-- back to list contract button -->
+<script src="searchClient.js"></script>
 </body>
 </html>

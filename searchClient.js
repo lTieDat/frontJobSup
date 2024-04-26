@@ -8,17 +8,39 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     const phone = phoneNumber.replace(/\s/g, '');
     console.log(phone);
     let clientData = [];
-    const apiUrl = `http://26.232.196.121:8080/api/v1/clients/search-by-phone-number?phone_no=${phone}`;
+    const apiUrl = `http://localhost:8080/api/v1/clients/search-by-phone-number?phone_no=${phone}`;
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-        console.log(clientData);
         if(data.title === 'Not Found')
         {
             alert('Client not found');
         }
         else{
-            console.log(data);
+            //send to backend to create contract
+            const id = parseInt(data.cid);
+            console.log(data.cid);
+            //send to backend to create contract
+            const createContractUrl = `http://localhost:8080/api/v1/contracts/create?CID=${id}`;
+                fetch(createContractUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify()
+                })
+                .then(response => response.json())
+                .then(createdContract => {
+                    console.log('Contract created:', createdContract);
+                    alert('Contract created successfully!');
+                })
+                .catch(error => {
+                    console.error('Error creating contract:', error);
+                    alert('Failed to create contract. Please try again.');
+                });
+            // get contract id created
+            fetch(`http://localhost:8080/api/v1/contracts/contracts/{contract-id}?contract-id=${id}`)
+
         }
     })
    

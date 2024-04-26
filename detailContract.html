@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment List</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.assignment-list {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .assignment-list {
+        padding: 10px;
+    }
+    table th,
+    table td {
+        padding: 10px;
+    }
+}
+.assign-button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="assignment-list">
+        <h1>Assignment List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>AID</th>
+                    <th>Date</th>
+                    <th>Wage</th>
+                    <th>Score Rate</th>
+                    <th>CtID</th>
+                    <th>WID</th>
+                    <th>JID</th>
+                </tr>
+            </thead>
+            <tbody id="assBody">
+            </tbody>
+        </table>
+        <button class="assign-button">Assign</button>
+    </div>
+    <script>
+        //get contract id in params
+        const urlParams = new URLSearchParams(window.location.search);
+        const ctID = urlParams.get('ctID');
+        console.log(ctID);
+        const assBody = document.getElementById('assBody');
+        const url = `http://localhost:8080/api/v1/contracts/contracts/{contract-id}/assignments/all?contract-id=${ctID}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(assignment => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${assignment.aid}</td>
+                        <td>${assignment.date}</td>
+                        <td>${assignment.wage}</td>
+                        <td>${assignment.scoreRate}</td>
+                        <td>${assignment.ctID}</td>
+                        <td>${assignment.wid}</td>
+                        <td>${assignment.jid}</td>
+                    `;
+                    assBody.appendChild(tr);
+                });
+            });
+    </script>
+</body>
+</html>

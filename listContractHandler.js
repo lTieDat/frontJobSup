@@ -1,22 +1,39 @@
               
-        //dummy list of contract with id, client, date, manager
-        const contract = [
-            {id: 1, client: "Juan Dela Cruz", date: "2021-01-01", manager: "Juan Dela Cruz"},
-            {id: 2, client: "Maria Clara", date: "2021-01-01", manager: "Juan Dela Cruz"},
-            {id: 3, client: "Pedro Penduko", date: "2021-01-01", manager: "Juan Dela Cruz"},
-            {id: 4, client: "Juan Tamad", date: "2021-01-01", manager: "Juan Dela Cruz"},
-            {id: 5, client: "Juan Luna", date: "2021-01-01", manager: "Juan Dela Cruz"},
-            {id: 6, client: "Jose Rizal", date: "2021-01-01", manager: "Juan Dela Cruz"},
-        ];
-        //get the table body
-        const contractTableBody = document.querySelector('#contractBody');
-        contract.forEach(contract => {
-                    const row = document.createElement('tr');
+        //get the contracts
+        const apiUrl = 'http://localhost:8080/api/v1/contracts/contracts/all';
+        const apiUrlClient ='http://localhost:8080/api/v1/clients/all'
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            fetch(apiUrlClient)
+            .then(response => response.json())
+            .then(dataClient => {
+                console.log('Success:', dataClient);
+                //get the table body
+                const tableBody = document.getElementById('contractBody');
+                data.forEach(contract => {
+                    const client = dataClient.find(client => client.cid === contract.cid);
+                    const row = tableBody.insertRow();
                     row.innerHTML = `
-                        <td>${contract.id}</td>
-                        <td>${contract.client}</td>
-                        <td>${contract.date}</td>
-                        <td>${contract.manager}</td>
+                    <td>${contract.ctID}</td>
+                    <td>${client.name}</td>
+                    <td>${contract.signDate}</td>
+                    <td>${contract.mid}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="viewContract(${contract.ctID})">View</button>
+                    </td>
                     `;
-        contractTableBody.appendChild(row);
+                });
+            })
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
+
+        //view contract
+        function viewContract(ctID){
+            window.location.href = `detailContract.html?ctID=${ctID}`;
+        }
+        

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Contract</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Align main content and sidebar */
+        }
+        .sidebar {
+            width: 25%; /* Sidebar width */
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .main-content {
+            width: 70%; /* Main content width */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        form {
+            margin-bottom: 20px; /* Add space between form and buttons */
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block; /* Make buttons full-width in sidebar */
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="submit"]:hover, .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-content">
+    <h1>Create Contract</h1>
+
+    <form action="#" method="post" id="contractForm">
+        <label for="managerName">Manager Name:</label>
+        <input type="text" id="managerName" name="managerName" required>
+
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" name="customerName" required>
+
+        <label for="signedDate">Signed Date:</label>
+        <input type="date" id="signedDate" name="signedDate" required>
+
+        <input type="submit" value="Create Contract">
+    </form>
+    <button class="btn" onclick="window.location.href = 'listContract.html';">Back to List</button>
+    <button class="btn" onclick="window.location.href = 'addNewCus.html';">New client</button>
+</div>
+
+<script>
+    document.getElementById('contractForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        // Get form data
+        const managerName = document.getElementById('managerName').value;
+        const customerName = document.getElementById('customerName').value;
+        const signedDate = document.getElementById('signedDate').value;
+
+        // Log form data (you can perform further actions here, such as sending data to server)
+        console.log("Manager Name:", managerName);
+        console.log("Customer Name:", customerName);
+        console.log("Signed Date:", signedDate);
+
+        // Optionally, redirect to another page after form submission
+        // window.location.href = 'listContract.html'; // Redirect to listContract.html
+    });
+</script>
+
+</body>
+</html>
+

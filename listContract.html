@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contract List</title>
+    
+      
+    
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between; /* Align main content and sidebar */
+      }
+      .sidebar {
+        width: 25%; /* Sidebar width */
+        background-color: #e9ecef;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .main-content {
+        width: 70%; /* Main content width */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar h2 {
+        margin-bottom: 20px;
+      }
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      .sidebar li {
+        margin-bottom: 10px;
+      }
+      .sidebar a {
+        display: block;
+        padding: 10px;
+        background-color: #ddd;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+      }
+      .sidebar a:hover {
+        background-color: #ccc;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Style table header cells */
+      th {
+        background-color: #007bff;
+        color: #fff;
+        padding: 12px;
+        text-align: left;
+      }
+
+      /* Style table body cells */
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      /* Add hover effect on table rows */
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      /* Alternate row background color */
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* Style links in table cells */
+      td a {
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      /* Hover effect for links */
+      td a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="searchClientByphoneNo.html">Create contract</a></li>
+        <li><a href="listContract.html">View contracts</a></li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <h1>Contract List</h1>
+
+      <table id="contractTable">
+        <thead>
+            <tr>
+                <th>Contract ID</th>
+                <th>Client</th>
+                <th>Date</th>
+                <th>Manager</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="contractBody" >
+        </tbody>
+    </table>
+    </div>
+    <script src ="../handler/listContractHandler.js"></script>
+  </body>
+  
+</html>
